@@ -36,14 +36,23 @@ void printPuzzle(int **puzzle)
 {
     int i, j;
 
-    printf(" ");
+    printf("-------------------------------\n");
     for (i = 0; i < 9; i++)
     {
         // print each row
+        printf("|");
         for (j = 0; j < 9; j++)
         {
             printf(" %d ", puzzle[i][j]);
+            if ((j + 1) % 3 == 0)
+            {
+                printf("|");
+            }
         }
         printf("\n");
+        if ((i + 1) % 3 == 0)
+        {
+            printf("-------------------------------\n");
+        }
     }
 }
