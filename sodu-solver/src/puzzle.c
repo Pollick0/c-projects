@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sudoku.h>
 
-Square *** setUpPuzzle(int ** puzzle); 
+Square *** setUpPuzzle(int ** puzzle)
 {
     Square *** sudoku;
     int i, j;
@@ -18,7 +19,7 @@ Square *** setUpPuzzle(int ** puzzle);
         {
             sudoku[i][j] = (Square*)malloc(sizeof(Square)*9);
 
-            sudoku[i][j]->number = puzzle[i][j]
+            sudoku[i][j]->number = puzzle[i][j];
 
             sudoku[i][j]->row = i;
             sudoku[i][j]->column = j;
@@ -33,7 +34,7 @@ Square *** setUpPuzzle(int ** puzzle);
             }
         }
     }
-
+    return sudoku;
 }
 
 int ** createPuzzle()
