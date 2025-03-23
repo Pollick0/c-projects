@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -lncurses -I$(IDIR)
 
 IDIR = ./include
-SRCDIR = ./scr
+SRCDIR = ./src
 
 SOURCES = $(wildcard $(SRCDIR)/*.c)
 
