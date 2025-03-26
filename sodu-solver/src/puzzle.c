@@ -5,7 +5,7 @@
 Square *** setUpPuzzle(int ** puzzle)
 {
     Square *** sudoku;
-    int i, j;
+    int i, j, x;
 
     sudoku = (Square***)malloc(sizeof(Square**)*9);
 
@@ -17,25 +17,74 @@ Square *** setUpPuzzle(int ** puzzle)
         // loop through columns
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
+            // maloc space for each square
             sudoku[i][j] = (Square*)malloc(sizeof(Square)*9);
 
+            // assign number to sudoku adt
             sudoku[i][j]->number = puzzle[i][j];
 
+            // assign row and column numbers to each square
             sudoku[i][j]->row = i;
             sudoku[i][j]->column = j;
 
-            if(sudoku[i][j]->number != 0) 
+            for (x = 0; x < SIZE_COLUMNS; x++) 
             {
-                sudoku[i][j]->code = POSSIBLE;
-            }
-            else 
-            {
-                sudoku[i][j]->code = 0x0;
+                sudoku[i][j]->possible[x] = 0;
             }
         }
     }
+
+    // loop through rows
+    for (i = 0; i < SIZE_ROWS; i++)
+    {
+        // loop through columns
+        for (j = 0; j < SIZE_COLUMNS; j++)
+        {
+            // checks if cell isn't 0, which means it has a number in it
+            if (sudoku[i][j]->number != 0)
+            {
+                // If it isn't then it's solvable.
+                sudoku[i][j]->solvable = 0;
+                updateSudoku(sudoku, i, j);
+                UNSOLVED--;
+            }
+        }
+    }
+
     return sudoku;
 }
+
+
+int updateSudoku(Square *** sudoku, int row, int column)
+{
+    int x;
+    // current number
+    int number = sudoku[row][column]->number;
+
+
+    for (x = 0; x < SIZE_ROWS; x++)
+    {
+
+        if (sudoku[x][column]->possible[number - 1] == 0)
+        {
+            sudoku[x][column]->solvable--;
+        }
+        sudoku[x][column]->possible[number - 1] = 1; 
+    }
+
+    for (x = 0; x < SIZE_COLUMNS; x++)
+    {
+
+        if (sudoku[row][x]->possible[number - 1] == 0)
+        {
+            sudoku[row][x]->solvable--;
+        }
+        sudoku[row][x]->possible[number - 1] = 1; 
+    }
+
+    return 1;
+}
+
 
 int ** createPuzzle()
 {
