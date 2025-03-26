@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 extern char POSSIBLE;
+extern int SIZE_ROWS;
+extern int SIZE_COLUMNS;
 
 typedef struct Box
 {

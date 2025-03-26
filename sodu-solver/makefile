@@ -1,18 +1,23 @@
 CC = gcc
-CFLAGS = -lncurses -I$(IDIR)
+CFLAGS = -I$(IDIR)
+LDFLAGS = -lncurses
 
 IDIR = ./include
 SRCDIR = ./src
 
 SOURCES = $(wildcard $(SRCDIR)/*.c)
+OBJECTS = $(SOURCES:.c=.o)
 
 all: sudoku run clean
 
-sudoku:
-	$(CC) $(SOURCES) $(CFLAGS) -o sudoku
+sudoku: $(OBJECTS)
+	$(CC) $(OBJECTS) $(LDFLAGS) -o sudoku
 
-run:
+%.o: %.c
+	$(CC) -c $(CFLAGS) $< -o $@
+
+run: sudoku
 	./sudoku
 
 clean:
-	rm -f sudoku
+	rm -f sudoku $(OBJECTS)
