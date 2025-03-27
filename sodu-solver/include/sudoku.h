@@ -28,9 +28,10 @@ typedef struct Square
 
 void solveSquare(Square * square);
 int ** createPuzzle();
-void printPuzzle(int ** puzzle);
-int checkPuzzle(Square *** square);
+void printPuzzle(Square *** puzzle);
 Square *** setUpPuzzle(int ** puzzle); 
+
+int checkPuzzle(Square *** square);
 int updateSudoku(Square *** sudoku, int row, int column);
 
 #endif

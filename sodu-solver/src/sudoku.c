@@ -12,11 +12,14 @@ int main ()
 
     puzzle = createPuzzle();
 
-    printPuzzle(puzzle);
-
     sudoku = setUpPuzzle(puzzle);
 
+    printPuzzle(sudoku);
+
     checkPuzzle(sudoku);
+
+    printf("\n");
+    printPuzzle(sudoku);
 
     return 0; 
 }

@@ -27,6 +27,7 @@ Square *** setUpPuzzle(int ** puzzle)
             // assign row and column numbers to each square
             sudoku[i][j]->row = i;
             sudoku[i][j]->column = j;
+            sudoku[i][j]->solvable = 9;
 
             for (x = 0; x < SIZE_COLUMNS; x++) 
             {
@@ -91,7 +92,7 @@ int checkPuzzle(Square *** sudoku)
     int i, j, x;
 
     // loop through rows
-    forif (i = 0; i < SIZE_ROWS; i++)
+    for (i = 0; i < SIZE_ROWS; i++)
     {
         for (j = 0; i < SIZE_COLUMNS; i++)
         {
@@ -111,7 +112,7 @@ int ** createPuzzle()
 {
     int ** puzzle;
     int i, j;
-    int array[9][9] = {0, 1, 9,    0, 0, 2,     0, 0, 0,
+    int array[9][9] = {0, 1, 9,    8, 0, 2,     0, 0, 0,
                        4, 7, 0,    6, 9, 0,     0, 0, 1,
                        0, 0, 0,    4, 0, 0,     0, 9, 0,
                     
@@ -121,8 +122,8 @@ int ** createPuzzle()
                        0, 0, 0,    2, 0, 1,     9, 5, 8,
                     
                     
-                       0, 5, 0,    0, 0, 6,     0, 0, 0,
-                       6, 0, 0,    0, 2, 8,     0, 7, 9,
+                       0, 5, 0,    7, 0, 6,     0, 0, 0,
+                       6, 0, 0,    3, 2, 8,     0, 7, 9,
                        0, 0, 0,    1, 0, 0,     8, 6, 0,
                       };
 
@@ -139,7 +140,7 @@ int ** createPuzzle()
 }
 
 
-void printPuzzle(int **puzzle)
+void printPuzzle(Square *** puzzle)
 {
     int i, j;
 
@@ -150,7 +151,7 @@ void printPuzzle(int **puzzle)
         printf("|");
         for (j = 0; j < 9; j++)
         {
-            printf(" %d ", puzzle[i][j]);
+            printf(" %d ", puzzle[i][j]->number);
             if ((j + 1) % 3 == 0)
             {
                 printf("|");
