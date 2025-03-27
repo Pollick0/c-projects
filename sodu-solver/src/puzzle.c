@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <sudoku.h>
 
+
 Square *** setUpPuzzle(int ** puzzle)
 {
     Square *** sudoku;
@@ -18,7 +19,7 @@ Square *** setUpPuzzle(int ** puzzle)
         for (j = 0; j < SIZE_COLUMNS; j++)
         {
             // maloc space for each square
-            sudoku[i][j] = (Square*)malloc(sizeof(Square)*9);
+            sudoku[i][j] = (Square*)malloc(sizeof(Square));
 
             // assign number to sudoku adt
             sudoku[i][j]->number = puzzle[i][j];
@@ -61,7 +62,6 @@ int updateSudoku(Square *** sudoku, int row, int column)
     // current number
     int number = sudoku[row][column]->number;
 
-
     for (x = 0; x < SIZE_ROWS; x++)
     {
 
@@ -82,6 +82,27 @@ int updateSudoku(Square *** sudoku, int row, int column)
         sudoku[row][x]->possible[number - 1] = 1; 
     }
 
+    return 1;
+}
+
+
+int checkPuzzle(Square *** sudoku)
+{
+    int i, j, x;
+
+    // loop through rows
+    forif (i = 0; i < SIZE_ROWS; i++)
+    {
+        for (j = 0; i < SIZE_COLUMNS; i++)
+        {
+            if (sudoku[i][j]->solvable == 1)
+            {
+                solveSquare(sudoku[i][j]);
+                updateSudoku(sudoku, i, j);
+            }
+        }
+    }
+    
     return 1;
 }
 
@@ -116,6 +137,7 @@ int ** createPuzzle()
     }
     return puzzle;
 }
+
 
 void printPuzzle(int **puzzle)
 {

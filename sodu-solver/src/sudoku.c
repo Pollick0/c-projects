@@ -16,7 +16,7 @@ int main ()
 
     sudoku = setUpPuzzle(puzzle);
 
-    checkPuzzle();
+    checkPuzzle(sudoku);
 
     return 0; 
 }
