@@ -45,7 +45,7 @@ Square *** setUpPuzzle(int ** puzzle)
             // checks if cell isn't 0, which means it has a number in it
             if (sudoku[i][j]->number != 0)
             {
-                // If it isn't then it's solvable.
+                // If square != 0 then it's solvable
                 sudoku[i][j]->solvable = 0;
                 updateSudoku(sudoku, i, j);
                 UNSOLVED--;
@@ -63,19 +63,22 @@ int updateSudoku(Square *** sudoku, int row, int column)
     // current number
     int number = sudoku[row][column]->number;
 
+    // loop through row squares
     for (x = 0; x < SIZE_ROWS; x++)
     {
-
+        // check if a number is possible
         if (sudoku[x][column]->possible[number - 1] == 0)
         {
+            // reduce solvable to say that there is one less number possible
             sudoku[x][column]->solvable--;
         }
+        // else possible = 1, that value isn't valid for that square
         sudoku[x][column]->possible[number - 1] = 1; 
     }
 
+    // loop through column squares
     for (x = 0; x < SIZE_COLUMNS; x++)
     {
-
         if (sudoku[row][x]->possible[number - 1] == 0)
         {
             sudoku[row][x]->solvable--;
@@ -94,7 +97,7 @@ int checkPuzzle(Square *** sudoku)
     // loop through rows
     for (i = 0; i < SIZE_ROWS; i++)
     {
-        for (j = 0; i < SIZE_COLUMNS; i++)
+        for (j = 0; j < SIZE_COLUMNS; j++)
         {
             if (sudoku[i][j]->solvable == 1)
             {
@@ -145,11 +148,11 @@ void printPuzzle(Square *** puzzle)
     int i, j;
 
     printf("-------------------------------\n");
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < SIZE_ROWS; i++)
     {
         // print each row
         printf("|");
-        for (j = 0; j < 9; j++)
+        for (j = 0; j < SIZE_COLUMNS; j++)
         {
             printf(" %d ", puzzle[i][j]->number);
             if ((j + 1) % 3 == 0)

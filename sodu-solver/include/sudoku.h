@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 extern int UNSOLVED;
-extern char POSSIBLE;
 extern int SIZE_ROWS;
 extern int SIZE_COLUMNS;
 
@@ -26,12 +25,12 @@ typedef struct Square
     int column;
 } Square;
 
-void solveSquare(Square * square);
 int ** createPuzzle();
 void printPuzzle(Square *** puzzle);
 Square *** setUpPuzzle(int ** puzzle); 
 
-int checkPuzzle(Square *** square);
 int updateSudoku(Square *** sudoku, int row, int column);
+int checkPuzzle(Square *** square);
+int solveSquare(Square * square);
 
 #endif
