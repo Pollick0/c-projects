@@ -16,6 +16,7 @@ int main ()
     printPuzzle(sudoku);
 
     checkPuzzle(sudoku);
+    checkPuzzle(sudoku);
 
     printf("\n");
     
