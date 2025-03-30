@@ -133,14 +133,12 @@ int checkPuzzle(Square *** sudoku, Box ** boxes)
                 updateSudoku(sudoku, i, j);
                 updateBoxes(sudoku, i, j);
 
-                return 1
+                return 1;
             }
         }
     }
     
-    boxSingles(sudoku, boxes);
-
-    return 1;
+    return boxSingles(sudoku, boxes);
 }
 
 

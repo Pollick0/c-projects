@@ -39,10 +39,13 @@ int boxSingles(Square *** sudoku, Box ** boxes)
                 boxes[i]->squares[temp]->solvable = 0;
 
                 updateSudoku(sudoku, boxes[i]->squares[temp]->row, boxes[i]->squares[temp]->column);
+
+                return 1;
             }
         }
     }
-    return 1;
+
+    return 0;
 }
 
 Box ** createBoxes()

@@ -20,17 +20,16 @@ int main ()
     
     while (UNSOLVED > 0)
     {
-        checkPuzzle(sudoku->squares, sudoku->boxes);
-        printPuzzle(sudoku->squares);
-        x++;
-        printf("\n");
-        printf("%d", x);
-        printf("\n");
+        progress = checkPuzzle(sudoku->squares, sudoku->boxes);
+        if (progress == 0)
+        {
+            break;
+        }
     }
-    
     printf("\n");
     
     printPuzzle(sudoku->squares);
+    printf("Failed to solve puzzle!\n\n");
     
     return 0; 
 }
